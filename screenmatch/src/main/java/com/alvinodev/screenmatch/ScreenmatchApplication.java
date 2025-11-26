@@ -1,5 +1,6 @@
 package com.alvinodev.screenmatch;
 
+import com.alvinodev.screenmatch.service.ConsumoAPI;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,10 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Hello World from Spring");
+        var consumoApi = new ConsumoAPI();
+
+        // var json = consumoApi.obtenerDatos("https://www.omdbapi.com/?t=game+of+thrones&apikey=34353774");
+        var json = consumoApi.obtenerDatos("https://coffee.alexflipnote.dev/random.json");
+        System.out.println(json);
     }
 }
