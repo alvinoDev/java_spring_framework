@@ -3,6 +3,7 @@ package com.alvinodev.screenmatch;
 import com.alvinodev.screenmatch.model.DatosEpisodio;
 import com.alvinodev.screenmatch.model.DatosSerie;
 import com.alvinodev.screenmatch.model.DatosTemporada;
+import com.alvinodev.screenmatch.principal.EjemploStreams;
 import com.alvinodev.screenmatch.principal.Principal;
 import com.alvinodev.screenmatch.service.ConsumoAPI;
 import com.alvinodev.screenmatch.service.ConvierteDatos;
@@ -22,7 +23,9 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Principal principal = new Principal();
-        principal.muestraMenu();
+//        Principal principal = new Principal();
+//        principal.muestraMenu();
+        EjemploStreams ejeStreams = new EjemploStreams();
+        ejeStreams.muestraEjemplo();
     }
 }
