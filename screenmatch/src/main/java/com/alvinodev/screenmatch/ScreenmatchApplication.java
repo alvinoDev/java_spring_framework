@@ -2,11 +2,15 @@ package com.alvinodev.screenmatch;
 
 import com.alvinodev.screenmatch.model.DatosEpisodio;
 import com.alvinodev.screenmatch.model.DatosSerie;
+import com.alvinodev.screenmatch.model.DatosTemporada;
 import com.alvinodev.screenmatch.service.ConsumoAPI;
 import com.alvinodev.screenmatch.service.ConvierteDatos;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -31,5 +35,14 @@ public class ScreenmatchApplication implements CommandLineRunner {
         json = consumoApi.obtenerDatos("https://www.omdbapi.com/?t=game+of+thrones&season=1&episode=1&apikey=34353774");
         DatosEpisodio episodios = conversor.obtenerDatos(json, DatosEpisodio.class);
         System.out.println(episodios);
+
+        List<DatosTemporada> temporadas = new ArrayList<>();
+        for (int i = 1; i <= datos.totalDeTemporadas() ; i++) {
+            json = consumoApi.obtenerDatos("https://www.omdbapi.com/?t=game+of+thrones&season=" + i +"&apikey=34353774");
+            var datosTemporadaList = conversor.obtenerDatos(json, DatosTemporada.class);
+            temporadas.add(datosTemporadaList);
+        }
+
+        temporadas.forEach(System.out::println);
     }
 }
