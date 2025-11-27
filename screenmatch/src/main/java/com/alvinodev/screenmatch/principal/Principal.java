@@ -7,8 +7,10 @@ import com.alvinodev.screenmatch.service.ConsumoAPI;
 import com.alvinodev.screenmatch.service.ConvierteDatos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Principal {
     private final String URL_BASE = "https://www.omdbapi.com/?t=";
@@ -46,7 +48,20 @@ public class Principal {
 //            }
 //        }
 
-        // Codigo equivalente a lo anterior
+        // Codigo equivalente a lo anterior LAMBDA
          temporadas.forEach(temp -> temp.episodios().forEach(episo -> System.out.println(episo.titulo())));
+
+        // CONVERTIR INFORMACION A UNA LISTA DE TIPO DatosEpisodio
+        List<DatosEpisodio> dtosEpisodio = temporadas.stream()
+                .flatMap(temp -> temp.episodios().stream())
+                .collect(Collectors.toList());
+
+        //TOP 5 EPISODIOS
+        System.out.println("TOP 5 EPISODIOS:");
+        dtosEpisodio.stream()
+                .filter(episo -> !episo.evaluacion().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DatosEpisodio::evaluacion).reversed())
+                .limit(5)
+                .forEach(System.out::println);
     }
 }
