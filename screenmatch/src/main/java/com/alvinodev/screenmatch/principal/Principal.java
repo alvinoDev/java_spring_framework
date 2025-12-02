@@ -3,6 +3,7 @@ package com.alvinodev.screenmatch.principal;
 import com.alvinodev.screenmatch.model.DatosEpisodio;
 import com.alvinodev.screenmatch.model.DatosSerie;
 import com.alvinodev.screenmatch.model.DatosTemporada;
+import com.alvinodev.screenmatch.model.Episodio;
 import com.alvinodev.screenmatch.service.ConsumoAPI;
 import com.alvinodev.screenmatch.service.ConvierteDatos;
 
@@ -63,5 +64,12 @@ public class Principal {
                 .sorted(Comparator.comparing(DatosEpisodio::evaluacion).reversed())
                 .limit(5)
                 .forEach(System.out::println);
+
+        // CONVERTIR DATOS A UNA LISTA DE EPISODIO
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap( temp -> temp.episodios().stream()
+                        .map(d -> new Episodio(temp.numero(), d)))
+                .collect(Collectors.toList());
+        episodios.forEach(System.out::println);
     }
 }
