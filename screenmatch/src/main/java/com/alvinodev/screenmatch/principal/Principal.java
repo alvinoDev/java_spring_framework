@@ -63,31 +63,35 @@ public class Principal {
         System.out.println("TOP 5 EPISODIOS:");
         dtosEpisodio.stream()
                 .filter(episo -> !episo.evaluacion().equalsIgnoreCase("N/A"))
+                .peek(e -> System.out.println("Primer filtro (N/A)"))
                 .sorted(Comparator.comparing(DatosEpisodio::evaluacion).reversed())
+                .peek(e -> System.out.println("Segundo ordenacion (M>m)"))
+                .map(episo -> episo.titulo().toUpperCase())
+                .peek(e -> System.out.println("Tercer filtro Mayuscula (m>M)"))
                 .limit(5)
                 .forEach(System.out::println);
 
         // CONVERTIR DATOS A UNA LISTA DE EPISODIO
-        List<Episodio> episodios = temporadas.stream()
-                .flatMap( temp -> temp.episodios().stream()
-                        .map(d -> new Episodio(temp.numero(), d)))
-                .collect(Collectors.toList());
-        episodios.forEach(System.out::println);
+//        List<Episodio> episodios = temporadas.stream()
+//                .flatMap( temp -> temp.episodios().stream()
+//                        .map(d -> new Episodio(temp.numero(), d)))
+//                .collect(Collectors.toList());
+//        episodios.forEach(System.out::println);
 
         // BUSQUEDA DE EPISODIOS A PARTIR DE "x" ANIO
-        System.out.println("=========| Ingresa el ANIO a partir del cual deseas ver los episodios");
-        var fecha = input.nextInt();
-        input.nextLine();
-
-        LocalDate fechaBusqueda = LocalDate.of(fecha, 1, 1);
-
-        DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        episodios.stream()
-                .filter(epi -> epi.getFechaDeLanzamiento() != null && epi.getFechaDeLanzamiento().isAfter(fechaBusqueda))
-                .forEach(epi -> System.out.println(
-                        "TEMPORADA " + epi.getTemporada() +
-                        " EPISODIO " + epi.getTitulo() +
-                        " FECHA DE LANZAMIENTO " + epi.getFechaDeLanzamiento().format(dateFormater)
-                ));
+//        System.out.println("=========| Ingresa el ANIO a partir del cual deseas ver los episodios");
+//        var fecha = input.nextInt();
+//        input.nextLine();
+//
+//        LocalDate fechaBusqueda = LocalDate.of(fecha, 1, 1);
+//
+//        DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//        episodios.stream()
+//                .filter(epi -> epi.getFechaDeLanzamiento() != null && epi.getFechaDeLanzamiento().isAfter(fechaBusqueda))
+//                .forEach(epi -> System.out.println(
+//                        "TEMPORADA " + epi.getTemporada() +
+//                        " EPISODIO " + epi.getTitulo() +
+//                        " FECHA DE LANZAMIENTO " + epi.getFechaDeLanzamiento().format(dateFormater)
+//                ));
     }
 }
