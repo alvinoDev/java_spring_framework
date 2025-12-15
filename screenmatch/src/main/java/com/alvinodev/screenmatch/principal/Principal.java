@@ -115,5 +115,5 @@ public class Principal {
         System.out.println("Media de evaluaciones: " + est.getAverage());
         System.out.println("Episodio mejor evaluado: " + est.getMax());
         System.out.println("Episodio peor evaluado: " + est.getMin());
-    }
+        }
 }
