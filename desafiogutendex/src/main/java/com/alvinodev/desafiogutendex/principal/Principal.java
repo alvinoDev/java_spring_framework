@@ -6,9 +6,11 @@ import com.alvinodev.desafiogutendex.service.ConvierteDatos;
 import com.alvinodev.desafiogutendex.service.consumoAPI;
 
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Principal {
     private static final String URL_BASE = "https://gutendex.com/books/";
@@ -47,7 +49,19 @@ public class Principal {
             System.out.println("LIBRO NO ENCONTRADO");
         }
 
+        // =========| ESTADISTICAS - NRO DE DESCARGAS |=========
+        System.out.println("=========| ESTADISTICAS - NRO DE DESCARGAS |=========");
+        DoubleSummaryStatistics estadis = datos.resultados().stream()
+                .filter(descarga -> descarga.numeroDeDescargas() > 0)
+                .collect(Collectors.summarizingDouble(DatosLibros::numeroDeDescargas));
 
+        String message = """
+        - MEDIA DESCARGAS: %s
+        - MAX DESCARGAS: %s
+        - MIN DESCARGAS: %s
+        - CANTIDAD DE REGISTROS EVALUADOS: %s
+        """.formatted(estadis.getAverage(), estadis.getMax(), estadis.getMin(), estadis.getCount());
+        System.out.println(message);
 
 
 
