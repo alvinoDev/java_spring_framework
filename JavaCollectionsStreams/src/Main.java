@@ -20,17 +20,28 @@ void main() {
 //    IO.println("La segunda persona de la lista es: " + empleados.get(Integer.hashCode(1)));
 //    IO.println("Total de empleados: " + empleados.size());
 
-    List<String> eventos = new ArrayList<>();
-    eventos.add("IA Conference");
-    eventos.add("AI Summit");
-    eventos.add("DevFest");
-    eventos.add("Cloud Expo");
-    eventos.add("IA Conference");
-    eventos.add("DevFest");
+//    List<String> eventos = new ArrayList<>();
+//    eventos.add("IA Conference");
+//    eventos.add("AI Summit");
+//    eventos.add("DevFest");
+//    eventos.add("Cloud Expo");
+//    eventos.add("IA Conference");
+//    eventos.add("DevFest");
+//
+//    IO.println("Lista de eventos: " + eventos);
+//
+//    Set<String> eventosUnicos = new HashSet<>(eventos);
+//    IO.println("Lista de eventos unicos: " + eventosUnicos);
 
-    IO.println("Lista de eventos: " + eventos);
+    Map<Integer, String> clientes = new HashMap<>();
 
-    Set<String> eventosUnicos = new HashSet<>(eventos);
-    IO.println("Lista de eventos unicos: " + eventosUnicos);
+    clientes.put(1, "Maria");
+    clientes.put(2, "Calos");
+    clientes.put(3, "Marcos");
+    clientes.put(4, "Renata");
+    clientes.put(5, "Maria");
+
+    IO.println("LISTA DE CLIENTES: " + clientes);
+    IO.println("El nombre del cliente con ID 3 es: " + clientes.get(3));
 
 }
