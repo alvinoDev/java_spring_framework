@@ -19,15 +19,25 @@ public class MainStream {
 //        IO.println(numCuadrado);
 
         // CALCULAR el total con impuesto
-        List<Double> preciosProductos = List.of(29.99, 49.50, 15.75, 99.99);
-        double totalGastado = preciosProductos.stream()
-                .reduce(0.0, Double::sum);
+//        List<Double> preciosProductos = List.of(29.99, 49.50, 15.75, 99.99);
+//        double totalGastado = preciosProductos.stream()
+//                .reduce(0.0, Double::sum);
+//
+//        double impuesto = totalGastado * 0.08;
+//        double totalConImpuesto = totalGastado + impuesto;
+//
+//        IO.println("Valor total antes del impuesto: " + String.format("%.2f", totalGastado));
+//        IO.println("Valor total con impuesto de 8%: " + String.format("%.2f", totalConImpuesto));
 
-        double impuesto = totalGastado * 0.08;
-        double totalConImpuesto = totalGastado + impuesto;
+        // CALCULAR estadísticas de las notas
+        List<Double> notas = List.of(7.5, 8.0, 6.5, 9.0, 10.0);
+        double sumaNota = notas.stream().reduce(0.0, Double::sum);
+        double mediaNotas = sumaNota / notas.size();
+        double menorNota = notas.stream().min(Double::compare).get();
+        double mayorNota = notas.stream().max(Double::compare).get();
 
-        IO.println("Valor total antes del impuesto: " + String.format("%.2f", totalGastado));
-        IO.println("Valor total con impuesto de 8%: " + String.format("%.2f", totalConImpuesto));
-
+        IO.println("La media de las notas es: " + mediaNotas);
+        IO.println("La nota más baja fue: " + menorNota);
+        IO.println("La nota más alta fue: " + mayorNota);
     }
 }
