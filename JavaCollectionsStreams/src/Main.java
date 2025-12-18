@@ -39,9 +39,17 @@ void main() {
     clientes.put(2, "Calos");
     clientes.put(3, "Marcos");
     clientes.put(4, "Renata");
-    clientes.put(5, "Maria");
+    clientes.put(5, "Karen");
 
     IO.println("LISTA DE CLIENTES: " + clientes);
     IO.println("El nombre del cliente con ID 3 es: " + clientes.get(3));
+
+    int clienteID = 6;
+
+    if(clientes.containsKey(clienteID)){
+        IO.println("El nombre del cliente con ID " + clienteID + " es: " + clientes.get(clienteID));
+    } else {
+        IO.println("Cliente con ID " + clienteID + " no encontrado.");
+    }
 
 }
