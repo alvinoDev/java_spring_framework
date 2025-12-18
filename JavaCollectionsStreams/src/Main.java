@@ -13,4 +13,11 @@ void main() {
     empleados.remove("Carlos");
     IO.println("Lista después de la eliminación: " + empleados);
 
+    // ACCEDER A ELEMENTOS
+    empleados.add("Pedro");
+    empleados.add("Antonio");
+
+    IO.println("La segunda persona de la lista es: " + empleados.get(Integer.hashCode(1)));
+    IO.println("Total de empleados: " + empleados.size());
+
 }
