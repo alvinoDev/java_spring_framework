@@ -7,6 +7,10 @@ void main() {
     empleados.add("Carlos");
     empleados.add("Ana");
 
-    IO.println("Lista de empleados: " + empleados);
+    IO.println("Lista de empleados INICIAL: " + empleados);
+
+    // ELIMINAR UN ELEMENTO DE LA LISTA
+    empleados.remove("Carlos");
+    IO.println("Lista después de la eliminación: " + empleados);
 
 }
