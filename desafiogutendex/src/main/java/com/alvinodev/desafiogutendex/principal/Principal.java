@@ -63,7 +63,9 @@ public class Principal {
         """.formatted(estadis.getAverage(), estadis.getMax(), estadis.getMin(), estadis.getCount());
         System.out.println(message);
 
-
+        // ===========| FILTRO POR RANGO DE FECHAS |============
+        System.out.println("=========| FILTRO POR RANGO DE FECHAS |=========");
+        // LA API DE "https://gutendex.com" NO TIENE FECHA DE PUBLICACION...
 
 
 
