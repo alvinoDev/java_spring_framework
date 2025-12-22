@@ -1,5 +1,6 @@
 package com.alvinodev.screenmatchpro.model;
 
+import com.alvinodev.screenmatchpro.service.ConsultaGemini;
 import com.fasterxml.jackson.annotation.JsonAlias;
 
 import java.util.Optional;
@@ -21,7 +22,7 @@ public class Serie {
         this.poster = datosSerie.poster();
         this.genero = Categoria.fromString(datosSerie.genero().split(",")[0].trim());
         this.actores = datosSerie.actores();
-        this.sinopsis = datosSerie.sinopsis();
+        this.sinopsis = ConsultaGemini.obtenerTraduccion(datosSerie.sinopsis());
     }
 
     public String getTitulo() {
