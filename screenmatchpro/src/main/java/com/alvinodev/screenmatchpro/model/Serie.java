@@ -25,6 +25,8 @@ public class Serie {
     @Transient //Significa que la propiedad no se mapeará a una columna en la base de datos
     private List<Episodio> episodioList;
 
+    public Serie(){ }
+
     public Serie(DatosSerie datosSerie) {
         this.titulo = datosSerie.titulo();
         this.totalTemporadas = datosSerie.totalTemporadas();
