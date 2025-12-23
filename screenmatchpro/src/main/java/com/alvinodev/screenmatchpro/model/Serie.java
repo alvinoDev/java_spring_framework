@@ -2,6 +2,7 @@ package com.alvinodev.screenmatchpro.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.OptionalDouble;
 
 @Entity
@@ -20,6 +21,9 @@ public class Serie {
     private Categoria genero;
     private String actores;
     private String sinopsis;
+
+    @Transient //Significa que la propiedad no se mapeará a una columna en la base de datos
+    private List<Episodio> episodioList;
 
     public Serie(DatosSerie datosSerie) {
         this.titulo = datosSerie.titulo();
