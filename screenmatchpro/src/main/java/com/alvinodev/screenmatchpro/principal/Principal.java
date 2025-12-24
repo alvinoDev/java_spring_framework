@@ -1,9 +1,6 @@
 package com.alvinodev.screenmatchpro.principal;
 
-import com.alvinodev.screenmatchpro.model.DatosSerie;
-import com.alvinodev.screenmatchpro.model.DatosTemporadas;
-import com.alvinodev.screenmatchpro.model.Episodio;
-import com.alvinodev.screenmatchpro.model.Serie;
+import com.alvinodev.screenmatchpro.model.*;
 import com.alvinodev.screenmatchpro.repository.SerieRepository;
 import com.alvinodev.screenmatchpro.service.ConsumoAPI;
 import com.alvinodev.screenmatchpro.service.ConvierteDatos;
@@ -37,6 +34,7 @@ public class Principal {
                     3 - Mostrar series buscadas
                     4 - Buscar Serie por titulo
                     5 - Buscar Top 5 Series
+                    6 - Buscar Series por Categoria
                                   
                     0 - Salir
                     """;
@@ -59,6 +57,9 @@ public class Principal {
                     break;
                 case 5:
                     buscarTop5Series();
+                case 6:
+                    buscarSeriesPorCategoria();
+                    break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
                     break;
@@ -143,4 +144,14 @@ public class Principal {
         topSeries.forEach(s -> System.out.println("SERIE: " + s.getTitulo() + " EVALUACION: " + s.getEvaluacion()));
     }
 
+    private void buscarSeriesPorCategoria() {
+        System.out.println("Escribe el Genero/Categoria de la Serie a buscar: ");
+        var genero = teclado.nextLine();
+
+        var categoria = Categoria.fromStringEspanol(genero);
+        List<Serie> seriePorCategoria = repositorio.findByGenero(categoria);
+
+        System.out.println("Las series de la categoria: " + genero);
+        seriePorCategoria.forEach(System.out::println);
+    }
 }
