@@ -37,6 +37,14 @@ public class Serie {
         this.sinopsis = datosSerie.sinopsis();
     }
 
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        this.episodios = episodios;
+    }
+
     public Long getId() {
         return Id;
     }
