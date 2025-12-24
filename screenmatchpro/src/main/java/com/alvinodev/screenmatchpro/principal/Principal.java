@@ -160,14 +160,29 @@ public class Principal {
     }
 
     private void filtrarSeriesPorTemporadaYEvaluacion() {
-        System.out.println("Ingresa el numero de Temporadas: ");
-        var temporadas = teclado.nextInt();
-        teclado.nextLine();
-        System.out.println("Ingresa un valor para Evaluacion: ");
-        var evaluacion = teclado.nextDouble();
-        teclado.nextLine();
 
-        List<Serie> filtroSerie = repositorio.findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThanEqual(temporadas, evaluacion);
+        // CONSULTA CON JPA
+        // System.out.println("Ingresa el numero de Temporadas: ");
+        // var temporadas = teclado.nextInt();
+        // teclado.nextLine();
+        // System.out.println("Ingresa un valor para Evaluacion: ");
+        // var evaluacion = teclado.nextDouble();
+        // teclado.nextLine();
+
+        // List<Serie> filtroSerie = repositorio.findByTotalTemporadasLessThanEqualAndEvaluacionGreaterThanEqual(temporadas, evaluacion);
+
+        // CONSULTA CON QUERIES NATIVAS
+        // List<Serie> filtroSerie = repositorio.seriesPorTemporadasYEvaluacion();
+
+
+        // CONSULTA CON Lenguaje de Queries Nativos JPQL
+         System.out.println("Ingresa el numero de Temporadas: ");
+         var temporadas = teclado.nextInt();
+         teclado.nextLine();
+         System.out.println("Ingresa un valor para Evaluacion: ");
+         var evaluacion = teclado.nextDouble();
+         teclado.nextLine();
+        List<Serie> filtroSerie = repositorio.seriesPorTemporadasYEvaluacion(temporadas, evaluacion);
 
         System.out.println("LISTA DE FILTRO POR TEMPORADAS Y EVALUACION: ");
         filtroSerie.forEach( s -> System.out.println("SERIE: " + s.getTitulo() + " EVALUACION: " + s.getEvaluacion()));
