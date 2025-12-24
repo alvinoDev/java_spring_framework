@@ -22,8 +22,8 @@ public class Serie {
     private String actores;
     private String sinopsis;
 
-    @Transient //Significa que la propiedad no se mapeará a una columna en la base de datos
-    private List<Episodio> episodioList;
+    @OneToMany(mappedBy = "serie")
+    private List<Episodio> episodios;
 
     public Serie(){ }
 
