@@ -1,6 +1,7 @@
 package com.alvinodev.screenmatchpro.repository;
 
 import com.alvinodev.screenmatchpro.model.Categoria;
+import com.alvinodev.screenmatchpro.model.Episodio;
 import com.alvinodev.screenmatchpro.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     // Consulta con Lenguaje de Queries Nativos JPQL
     @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :totalTemporadas AND s.evaluacion >= :evaluacion")
     List<Serie> seriesPorTemporadasYEvaluacion(Integer totalTemporadas, Double evaluacion);
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE e.titulo LIKE %:nombreEpisodio%")
+    List<Episodio> episodiosPorNombre(String nombreEpisodio);
 }
