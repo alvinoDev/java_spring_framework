@@ -2,6 +2,7 @@ package com.alvinodev.screenmatchpro.controller;
 
 import com.alvinodev.screenmatchpro.dto.SerieDTO;
 import com.alvinodev.screenmatchpro.repository.SerieRepository;
+import com.alvinodev.screenmatchpro.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,19 +13,10 @@ import java.util.stream.Collectors;
 @RestController
 public class SerieController {
     @Autowired
-    private SerieRepository repository;
+    private SerieService service;
 
     @GetMapping("/series")
     public List<SerieDTO> getAllSeries(){
-        return repository.findAll().stream()
-                .map(s -> new SerieDTO(
-                        s.getTitulo(),
-                        s.getTotalTemporadas(),
-                        s.getEvaluacion(),
-                        s.getPoster(),
-                        s.getGenero(),
-                        s.getActores(),
-                        s.getSinopsis()
-                )).collect(Collectors.toList());
+        return service.getAllSeries();
     }
 }
