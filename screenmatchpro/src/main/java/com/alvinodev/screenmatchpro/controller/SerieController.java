@@ -19,4 +19,9 @@ public class SerieController {
     public List<SerieDTO> getAllSeries(){
         return service.getAllSeries();
     }
+
+    @GetMapping("/series/top5")
+    public List<SerieDTO> getTop5() {
+        return service.getTop5();
+    }
 }

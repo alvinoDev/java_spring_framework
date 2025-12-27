@@ -1,9 +1,11 @@
 package com.alvinodev.screenmatchpro.service;
 
 import com.alvinodev.screenmatchpro.dto.SerieDTO;
+import com.alvinodev.screenmatchpro.model.Serie;
 import com.alvinodev.screenmatchpro.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +16,15 @@ public class SerieService {
     private SerieRepository repository;
 
     public List<SerieDTO> getAllSeries(){
-        return repository.findAll().stream()
+        return convierteDatos(repository.findAll());
+    }
+
+    public List<SerieDTO> getTop5() {
+        return convierteDatos(repository.findTop5ByOrderByEvaluacionDesc());
+    }
+
+    public List<SerieDTO> convierteDatos(List<Serie> serie) {
+        return serie.stream()
                 .map(s -> new SerieDTO(
                         s.getTitulo(),
                         s.getTotalTemporadas(),
