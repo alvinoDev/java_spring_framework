@@ -2,6 +2,7 @@ package com.alvinodev.screenmatchpro.service;
 
 import com.alvinodev.screenmatchpro.dto.EpisodioDTO;
 import com.alvinodev.screenmatchpro.dto.SerieDTO;
+import com.alvinodev.screenmatchpro.model.Categoria;
 import com.alvinodev.screenmatchpro.model.Serie;
 import com.alvinodev.screenmatchpro.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,12 @@ public class SerieService {
     public List<EpisodioDTO> getNumbersSessons(Long id, Long numTemporadas) {
         return repository.getNumbersSessons(id, numTemporadas).stream()
                 .map(e -> new EpisodioDTO(e.getTemporada(), e.getTitulo(), e.getNumeroEpisodio())).collect(Collectors.toList());
+    }
+
+
+    public List<SerieDTO> getSerieCategoria(String nombreGenero) {
+        Categoria categoria = Categoria.fromStringEspanol(nombreGenero);
+        return convierteDatos(repository.findByGenero(categoria));
     }
 
     public List<SerieDTO> convierteDatos(List<Serie> serie) {
