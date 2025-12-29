@@ -11,7 +11,7 @@ public class phraseController {
     @Autowired
     PhraseService service;
 
-    @GetMapping("/series/phrases")
+    @GetMapping("/series/frases")
     public PhraseDTO getRandomPhrase() {
         return service.getRandomPhrase();
     }
