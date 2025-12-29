@@ -1,5 +1,6 @@
 package com.alvinodev.screenmatchpro.controller;
 
+import com.alvinodev.screenmatchpro.dto.EpisodioDTO;
 import com.alvinodev.screenmatchpro.dto.SerieDTO;
 import com.alvinodev.screenmatchpro.repository.SerieRepository;
 import com.alvinodev.screenmatchpro.service.SerieService;
@@ -36,5 +37,10 @@ public class SerieController {
     @GetMapping("/{id}")
     public SerieDTO getSerie(@PathVariable Long id){
         return service.getSerie(id);
+    }
+
+    @GetMapping("/{id}/temporadas/todas")
+    public List<EpisodioDTO> getAllSessons(@PathVariable Long id){
+    return service.getAllSessons(id);
     }
 }

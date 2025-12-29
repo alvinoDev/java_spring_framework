@@ -1,5 +1,6 @@
 package com.alvinodev.screenmatchpro.service;
 
+import com.alvinodev.screenmatchpro.dto.EpisodioDTO;
 import com.alvinodev.screenmatchpro.dto.SerieDTO;
 import com.alvinodev.screenmatchpro.model.Serie;
 import com.alvinodev.screenmatchpro.repository.SerieRepository;
@@ -42,6 +43,16 @@ public class SerieService {
                     s.getActores(),
                     s.getSinopsis()
             );
+        }
+        return null;
+    }
+
+
+    public List<EpisodioDTO> getAllSessons(Long id) {
+        Optional<Serie> serie = repository.findById(id);
+        if(serie.isPresent()) {
+            Serie s = serie.get();
+            return s.getEpisodios().stream().map(e -> new EpisodioDTO(e.getTemporada(), e.getTitulo(), e.getNumeroEpisodio())).collect(Collectors.toList());
         }
         return null;
     }
