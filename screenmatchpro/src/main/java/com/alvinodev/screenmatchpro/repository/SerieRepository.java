@@ -1,5 +1,6 @@
 package com.alvinodev.screenmatchpro.repository;
 
+import com.alvinodev.screenmatchpro.dto.EpisodioDTO;
 import com.alvinodev.screenmatchpro.model.Categoria;
 import com.alvinodev.screenmatchpro.model.Episodio;
 import com.alvinodev.screenmatchpro.model.Serie;
@@ -35,4 +36,7 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     @Query("SELECT s FROM Serie s JOIN s.episodios e GROUP BY s ORDER BY MAX(e.fechaDeLanzamiento) DESC LIMIT 5")
     List<Serie> lanzamientosMasRecientes();
+
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id AND e.temporada = :numTemporadas")
+    List<EpisodioDTO> getNumbersSessons(Long id, Long numTemporadas);
 }

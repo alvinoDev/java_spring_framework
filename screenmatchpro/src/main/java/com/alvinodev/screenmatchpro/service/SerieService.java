@@ -57,6 +57,10 @@ public class SerieService {
         return null;
     }
 
+    public List<EpisodioDTO> getNumbersSessons(Long id, Long numTemporadas) {
+        return repository.getNumbersSessons(id, numTemporadas);
+    }
+
     public List<SerieDTO> convierteDatos(List<Serie> serie) {
         return serie.stream()
                 .map(s -> new SerieDTO(
