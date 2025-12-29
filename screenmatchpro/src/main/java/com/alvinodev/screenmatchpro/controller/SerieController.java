@@ -5,6 +5,7 @@ import com.alvinodev.screenmatchpro.repository.SerieRepository;
 import com.alvinodev.screenmatchpro.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +31,10 @@ public class SerieController {
     @GetMapping("/lanzamientos")
     public List<SerieDTO> getLanzamientosRecientes() {
         return service.getLanzamientosRecientes();
+    }
+
+    @GetMapping("/{id}")
+    public SerieDTO getSerie(@PathVariable Long id){
+        return service.getSerie(id);
     }
 }
