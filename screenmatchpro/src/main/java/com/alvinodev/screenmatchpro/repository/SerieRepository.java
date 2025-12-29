@@ -38,5 +38,5 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     List<Serie> lanzamientosMasRecientes();
 
     @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id AND e.temporada = :numTemporadas")
-    List<EpisodioDTO> getNumbersSessons(Long id, Long numTemporadas);
+    List<Episodio> getNumbersSessons(Long id, Long numTemporadas);
 }
