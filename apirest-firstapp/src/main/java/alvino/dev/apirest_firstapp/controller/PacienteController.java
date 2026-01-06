@@ -1,10 +1,7 @@
 package alvino.dev.apirest_firstapp.controller;
 
 import alvino.dev.apirest_firstapp.medico.DatosListaMedico;
-import alvino.dev.apirest_firstapp.paciente.DatosListaPaciente;
-import alvino.dev.apirest_firstapp.paciente.DatosRegistroPaciente;
-import alvino.dev.apirest_firstapp.paciente.Paciente;
-import alvino.dev.apirest_firstapp.paciente.PacienteRepository;
+import alvino.dev.apirest_firstapp.paciente.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,5 +26,12 @@ public class PacienteController {
     @GetMapping
     public Page<DatosListaPaciente> listar(@PageableDefault (size = 10, page = 0, sort = {"nombre"}) Pageable paginacion) {
         return pacienteRepository.findAllByActivoTrue(paginacion).map(DatosListaPaciente::new);
+    }
+
+    @Transactional
+    @PutMapping
+    public void modificar(@RequestBody @Valid DatosActualizacionPaciente datos) {
+        var paciente = pacienteRepository.getReferenceById(datos.id());
+        paciente.actualizarInformacion(datos);
     }
 }

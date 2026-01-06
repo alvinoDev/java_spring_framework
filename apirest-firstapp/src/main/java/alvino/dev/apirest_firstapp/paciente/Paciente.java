@@ -2,6 +2,7 @@ package alvino.dev.apirest_firstapp.paciente;
 
 import alvino.dev.apirest_firstapp.direccion.Direccion;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,5 +36,11 @@ public class Paciente {
         this.documento = datos.documento();
         this.direccion = new Direccion(datos.direccion());
         this.activo = true;
+    }
+
+    public void actualizarInformacion(@Valid DatosActualizacionPaciente datos) {
+        if (datos.nombre() != null) { this.nombre = datos.nombre(); }
+        if(datos.telefono() != null) { this.telefono = datos.telefono(); }
+        if(datos.direccion() != null) { this.direccion.actualizarDireccion(datos.direccion()); }
     }
 }
