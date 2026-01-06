@@ -43,4 +43,6 @@ public class Paciente {
         if(datos.telefono() != null) { this.telefono = datos.telefono(); }
         if(datos.direccion() != null) { this.direccion.actualizarDireccion(datos.direccion()); }
     }
+
+    public void eliminacionLogica() { this.activo = false; }
 }
