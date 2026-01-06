@@ -3,6 +3,7 @@ package alvino.dev.apirest_firstapp.controller;
 import alvino.dev.apirest_firstapp.medico.DatosRegistroMedico;
 import alvino.dev.apirest_firstapp.medico.Medico;
 import alvino.dev.apirest_firstapp.medico.MedicoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class MedicoController {
 
     @Transactional
     @PostMapping
-    public void registrar(@RequestBody DatosRegistroMedico datos) {
+    public void registrar(@RequestBody @Valid DatosRegistroMedico datos) {
         medicoRepository.save(new Medico(datos));
     }
 }
