@@ -25,6 +25,8 @@ public class Paciente {
     @Embedded
     private Direccion direccion;
 
+    private Boolean activo;
+
     public Paciente(DatosRegistroPaciente datos) {
         this.id = null;
         this.nombre = datos.nombre();
@@ -32,5 +34,6 @@ public class Paciente {
         this.telefono = datos.telefono();
         this.documento = datos.documento();
         this.direccion = new Direccion(datos.direccion());
+        this.activo = true;
     }
 }
