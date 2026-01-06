@@ -1,0 +1,20 @@
+package alvino.dev.apirest_firstapp.direccion;
+
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Embeddable
+public class Direccion {
+    private String calle;
+    private String numero;
+    private String complemento;
+    private String barrio;
+    private String codigo_postal;
+    private String ciudad;
+    private String estado;
+}
