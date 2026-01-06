@@ -29,6 +29,8 @@ public class Medico {
     @Embedded
     private Direccion direccion;
 
+    private Boolean activo;
+
     public Medico(DatosRegistroMedico datos) {
         this.id = null;
         this.nombre = datos.nombre();
@@ -37,6 +39,7 @@ public class Medico {
         this.documento = datos.documento();
         this.especialidad = datos.especialidad();
         this.direccion = new Direccion(datos.direccion());
+        this.activo = true;
     }
 
     public void actualizarInformacion(@Valid DatosActualizacionMedico datos) {
@@ -45,4 +48,7 @@ public class Medico {
         if(datos.direccion() != null) { this.direccion.actualizarDireccion(datos.direccion()); }
     }
 
+    public void eliminacionLogica() {
+        this.activo = false;
+    }
 }
