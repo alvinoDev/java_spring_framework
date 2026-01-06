@@ -1,9 +1,6 @@
 package alvino.dev.apirest_firstapp.controller;
 
-import alvino.dev.apirest_firstapp.medico.DatosListaMedico;
-import alvino.dev.apirest_firstapp.medico.DatosRegistroMedico;
-import alvino.dev.apirest_firstapp.medico.Medico;
-import alvino.dev.apirest_firstapp.medico.MedicoRepository;
+import alvino.dev.apirest_firstapp.medico.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,5 +29,8 @@ public class MedicoController {
 
     @Transactional
     @PutMapping
-    public void actualizar(@RequestBody @Valid DatosRegistroMedico datos) {}
+    public void actualizar(@RequestBody @Valid DatosActualizacionMedico datos) {
+        var medico = medicoRepository.getReferenceById(datos.id());
+        medico.actualizarInformacion(datos);
+    }
 }
