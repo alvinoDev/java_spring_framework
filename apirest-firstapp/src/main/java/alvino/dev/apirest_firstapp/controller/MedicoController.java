@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,21 +24,26 @@ public class MedicoController {
     }
 
     @GetMapping
-    public Page<DatosListaMedico> listar(@PageableDefault(size = 10, page = 0, sort = {"nombre"}) Pageable paginacion) {
-        return medicoRepository.findAllByActivoTrue(paginacion).map(DatosListaMedico::new);
+    public ResponseEntity<Page<DatosListaMedico>> listar(@PageableDefault(size = 10, page = 0, sort = {"nombre"}) Pageable paginacion) {
+        var data = medicoRepository.findAllByActivoTrue(paginacion).map(DatosListaMedico::new);
+
+        return ResponseEntity.ok().build();
     }
 
     @Transactional
     @PutMapping
-    public void actualizar(@RequestBody @Valid DatosActualizacionMedico datos) {
+    public ResponseEntity actualizar(@RequestBody @Valid DatosActualizacionMedico datos) {
         var medico = medicoRepository.getReferenceById(datos.id());
         medico.actualizarInformacion(datos);
+
+        return  ResponseEntity.ok(new DatosDetalleMedico(medico));
     }
 
     @Transactional
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
+    public ResponseEntity eliminar(@PathVariable Long id) {
         var medico = medicoRepository.getReferenceById(id);
         medico.eliminacionLogica();
+        return ResponseEntity.noContent().build();
     }
 }
