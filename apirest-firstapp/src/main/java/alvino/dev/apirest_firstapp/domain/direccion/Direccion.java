@@ -1,4 +1,4 @@
-package alvino.dev.apirest_firstapp.direccion;
+package alvino.dev.apirest_firstapp.domain.direccion;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

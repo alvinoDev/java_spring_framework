@@ -1,4 +1,4 @@
-package alvino.dev.apirest_firstapp.medico;
+package alvino.dev.apirest_firstapp.domain.medico;
 
 public enum Especialidad {
     ORTOPEDIA,

@@ -1,6 +1,4 @@
-package alvino.dev.apirest_firstapp.paciente;
-
-import alvino.dev.apirest_firstapp.medico.Especialidad;
+package alvino.dev.apirest_firstapp.domain.paciente;
 
 public record DatosListaPaciente(
         Long id,

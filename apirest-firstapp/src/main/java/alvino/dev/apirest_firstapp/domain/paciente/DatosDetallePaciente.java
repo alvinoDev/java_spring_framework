@@ -1,6 +1,6 @@
-package alvino.dev.apirest_firstapp.paciente;
+package alvino.dev.apirest_firstapp.domain.paciente;
 
-import alvino.dev.apirest_firstapp.direccion.Direccion;
+import alvino.dev.apirest_firstapp.domain.direccion.Direccion;
 
 public record DatosDetallePaciente(
         Long id,

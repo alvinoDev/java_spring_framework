@@ -1,9 +1,4 @@
-package alvino.dev.apirest_firstapp.medico;
-
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+package alvino.dev.apirest_firstapp.domain.medico;
 
 public record DatosListaMedico(
         Long id,

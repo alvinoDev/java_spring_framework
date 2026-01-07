@@ -1,6 +1,6 @@
-package alvino.dev.apirest_firstapp.medico;
+package alvino.dev.apirest_firstapp.domain.medico;
 
-import alvino.dev.apirest_firstapp.direccion.DatosDireccion;
+import alvino.dev.apirest_firstapp.domain.direccion.DatosDireccion;
 import jakarta.validation.constraints.NotNull;
 
 public record DatosActualizacionMedico(

@@ -1,6 +1,6 @@
-package alvino.dev.apirest_firstapp.medico;
+package alvino.dev.apirest_firstapp.domain.paciente;
 
-import alvino.dev.apirest_firstapp.direccion.Direccion;
+import alvino.dev.apirest_firstapp.domain.direccion.Direccion;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -8,13 +8,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "medicos")
-@Entity(name = "Medico")
+@Table(name = "pacientes")
+@Entity(name = "Paciente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,32 +23,26 @@ public class Medico {
     private String telefono;
     private String documento;
 
-    @Enumerated(EnumType.STRING)
-    private Especialidad especialidad;
-
     @Embedded
     private Direccion direccion;
 
     private Boolean activo;
 
-    public Medico(DatosRegistroMedico datos) {
+    public Paciente(DatosRegistroPaciente datos) {
         this.id = null;
         this.nombre = datos.nombre();
         this.email = datos.email();
         this.telefono = datos.telefono();
         this.documento = datos.documento();
-        this.especialidad = datos.especialidad();
         this.direccion = new Direccion(datos.direccion());
         this.activo = true;
     }
 
-    public void actualizarInformacion(@Valid DatosActualizacionMedico datos) {
+    public void actualizarInformacion(@Valid DatosActualizacionPaciente datos) {
         if (datos.nombre() != null) { this.nombre = datos.nombre(); }
         if(datos.telefono() != null) { this.telefono = datos.telefono(); }
         if(datos.direccion() != null) { this.direccion.actualizarDireccion(datos.direccion()); }
     }
 
-    public void eliminacionLogica() {
-        this.activo = false;
-    }
+    public void eliminacionLogica() { this.activo = false; }
 }

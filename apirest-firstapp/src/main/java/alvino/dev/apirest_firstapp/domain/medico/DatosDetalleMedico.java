@@ -1,6 +1,6 @@
-package alvino.dev.apirest_firstapp.medico;
+package alvino.dev.apirest_firstapp.domain.medico;
 
-import alvino.dev.apirest_firstapp.direccion.Direccion;
+import alvino.dev.apirest_firstapp.domain.direccion.Direccion;
 
 public record DatosDetalleMedico(
         Long id,

@@ -1,7 +1,6 @@
 package alvino.dev.apirest_firstapp.controller;
 
-import alvino.dev.apirest_firstapp.medico.DatosDetalleMedico;
-import alvino.dev.apirest_firstapp.paciente.*;
+import alvino.dev.apirest_firstapp.domain.paciente.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

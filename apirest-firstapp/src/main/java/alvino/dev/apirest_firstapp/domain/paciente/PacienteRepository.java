@@ -1,4 +1,4 @@
-package alvino.dev.apirest_firstapp.paciente;
+package alvino.dev.apirest_firstapp.domain.paciente;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
