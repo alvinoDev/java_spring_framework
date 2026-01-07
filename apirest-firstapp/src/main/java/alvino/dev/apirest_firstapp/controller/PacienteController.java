@@ -42,9 +42,11 @@ public class PacienteController {
 
     @Transactional
     @PutMapping
-    public void modificar(@RequestBody @Valid DatosActualizacionPaciente datos) {
+    public ResponseEntity actualizar(@RequestBody @Valid DatosActualizacionPaciente datos) {
         var paciente = pacienteRepository.getReferenceById(datos.id());
         paciente.actualizarInformacion(datos);
+
+        return ResponseEntity.ok(new DatosDetallePaciente(paciente));
     }
 
     @Transactional
