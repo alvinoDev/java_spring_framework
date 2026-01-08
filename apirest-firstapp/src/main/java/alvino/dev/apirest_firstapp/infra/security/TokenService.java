@@ -4,18 +4,22 @@ import alvino.dev.apirest_firstapp.domain.usuario.Usuario;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 
 @Service
 public class TokenService {
+
+    @Value("${apirest-firstapp.security.token.secret}")
+    private String secret;
+
     public String generarToken(Usuario usuario) {
         try {
-            var algorithm = Algorithm.HMAC256("123456789");
+            var algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("API First App")
                     .withSubject(usuario.getUsername())
