@@ -1,10 +1,8 @@
 package alvino.dev.apirest_firstapp.controller;
 
-import alvino.dev.apirest_firstapp.domain.consulta.ConsultaRepository;
-import alvino.dev.apirest_firstapp.domain.consulta.DatosDelleConsulta;
+import alvino.dev.apirest_firstapp.domain.consulta.DatosDeConsulta;
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
 import alvino.dev.apirest_firstapp.domain.consulta.ReservaDeConsultas;
-import alvino.dev.apirest_firstapp.domain.usuario.Usuario;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +24,6 @@ public class ConsultaController {
 
         reservaDeConsultas.reservar(datos);
 
-        return ResponseEntity.ok(new DatosDelleConsulta(null, null, null, null));
+        return ResponseEntity.ok(new DatosDeConsulta(null, null, null, null));
     }
 }

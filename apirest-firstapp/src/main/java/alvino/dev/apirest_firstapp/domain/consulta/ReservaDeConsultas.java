@@ -3,7 +3,7 @@ package alvino.dev.apirest_firstapp.domain.consulta;
 import alvino.dev.apirest_firstapp.domain.medico.Medico;
 import alvino.dev.apirest_firstapp.domain.medico.MedicoRepository;
 import alvino.dev.apirest_firstapp.domain.paciente.PacienteRepository;
-import alvino.dev.apirest_firstapp.domain.validacionIDException;
+import alvino.dev.apirest_firstapp.domain.validacionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +19,19 @@ public class ReservaDeConsultas {
 
     public void reservar(DatosReservaConsulta datos) {
         if(!pacienteRepository.existsById(datos.idPaciente())) {
-            throw new validacionIDException("No existe un paciente con el ID seleccionado");
+            throw new validacionException("No existe un paciente con el ID seleccionado");
         }
 
         if(datos.idMedico() != null && !medicoRepository.existsById(datos.idMedico())) {
-            throw new validacionIDException("No existe un medico con el ID seleccionado");
+            throw new validacionException("No existe un medico con el ID seleccionado");
         }
+
+        // VALIDACIONES AQUI
+
 
         var medico = seleccionarMedico(datos);
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();
-
         var consulta = new Consulta(null, medico, paciente, datos.fecha());
-
         consultaRepository.save(consulta);
     }
 
@@ -40,7 +41,7 @@ public class ReservaDeConsultas {
         }
 
         if(datos.especialidad() == null) {
-            throw new validacionIDException("No existe un medico seleccionado, es necesario seleccionar una especialidad");
+            throw new validacionException("No existe un medico seleccionado, es necesario seleccionar una especialidad");
         }
 
         return medicoRepository.seleccionarMedicoAleatorioDisponibleEnLaFecha(datos.especialidad(), datos.fecha());
