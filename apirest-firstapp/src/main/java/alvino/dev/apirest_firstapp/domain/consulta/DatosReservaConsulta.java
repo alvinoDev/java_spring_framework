@@ -1,5 +1,6 @@
 package alvino.dev.apirest_firstapp.domain.consulta;
 
+import alvino.dev.apirest_firstapp.domain.medico.Especialidad;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,5 +12,6 @@ public record DatosReservaConsulta(
         Long idPaciente,
         @NotNull
         @Future
-        LocalDateTime fecha
+        LocalDateTime fecha,
+        Especialidad especialidad
 ) { }

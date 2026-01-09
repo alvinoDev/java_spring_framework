@@ -35,5 +35,14 @@ public class ReservaDeConsultas {
     }
 
     private Medico seleccionarMedico(DatosReservaConsulta datos) {
+        if(datos.idMedico() != null) {
+            return medicoRepository.getReferenceById(datos.idMedico());
+        }
+
+        if(datos.especialidad() == null) {
+            throw new validacionIDException("No existe un medico seleccionado, es necesario seleccionar una especialidad");
+        }
+
+        return medicoRepository.seleccionarMedicoAleatorioDisponibleEnLaFecha(datos.especialidad(), datos.fecha());
     }
 }
