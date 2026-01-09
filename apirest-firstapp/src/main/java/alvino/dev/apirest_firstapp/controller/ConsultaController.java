@@ -1,6 +1,5 @@
 package alvino.dev.apirest_firstapp.controller;
 
-import alvino.dev.apirest_firstapp.domain.consulta.DatosDeConsulta;
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
 import alvino.dev.apirest_firstapp.domain.consulta.ReservaDeConsultas;
 import jakarta.validation.Valid;
@@ -22,8 +21,8 @@ public class ConsultaController {
     @PostMapping
     public ResponseEntity reservar(@RequestBody @Valid DatosReservaConsulta datos) {
 
-        reservaDeConsultas.reservar(datos);
+        var detConsulta = reservaDeConsultas.reservar(datos);
 
-        return ResponseEntity.ok(new DatosDeConsulta(null, null, null, null));
+        return ResponseEntity.ok(detConsulta);
     }
 }
