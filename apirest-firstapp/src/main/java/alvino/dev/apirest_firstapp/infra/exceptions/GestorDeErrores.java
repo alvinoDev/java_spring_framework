@@ -1,6 +1,7 @@
 package alvino.dev.apirest_firstapp.infra.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -20,6 +21,11 @@ public class GestorDeErrores {
         return ResponseEntity.badRequest().body(
                 errores.stream().map(DatosErrorValidacion::new).toList()
         );
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity errorDeValidacion(ValidationException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     public record DatosErrorValidacion(String field, String message) {
