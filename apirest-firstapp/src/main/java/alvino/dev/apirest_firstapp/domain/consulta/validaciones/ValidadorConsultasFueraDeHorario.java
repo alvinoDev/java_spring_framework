@@ -2,10 +2,12 @@ package alvino.dev.apirest_firstapp.domain.consulta.validaciones;
 
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
 import alvino.dev.apirest_firstapp.domain.validacionException;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
-public class ValidacionConsultasFueraDeHorario {
+@Component
+public class ValidadorConsultasFueraDeHorario implements ValidadorDeConsultas {
     public void validar(DatosReservaConsulta datos) {
         var fechaConsulta = datos.fecha();
         var domingo = fechaConsulta.getDayOfWeek().equals(DayOfWeek.SUNDAY);

@@ -2,11 +2,13 @@ package alvino.dev.apirest_firstapp.domain.consulta.validaciones;
 
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
 import jakarta.validation.ValidationException;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class ValidacionAnticipacionDeConsulta {
+@Component
+public class ValidadorAnticipacionDeConsulta implements ValidadorDeConsultas {
     public void validar(DatosReservaConsulta datos) {
         var fechaConsulta = datos.fecha();
         var ahora = LocalDateTime.now();

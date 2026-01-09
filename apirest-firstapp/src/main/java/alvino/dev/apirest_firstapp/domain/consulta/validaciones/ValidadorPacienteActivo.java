@@ -3,8 +3,12 @@ package alvino.dev.apirest_firstapp.domain.consulta.validaciones;
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
 import alvino.dev.apirest_firstapp.domain.paciente.PacienteRepository;
 import jakarta.validation.ValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class ValidacionPacienteActivo {
+@Component
+public class ValidadorPacienteActivo implements ValidadorDeConsultas {
+    @Autowired
     private PacienteRepository pacienteRepository;
 
     public void validar(DatosReservaConsulta datos) {

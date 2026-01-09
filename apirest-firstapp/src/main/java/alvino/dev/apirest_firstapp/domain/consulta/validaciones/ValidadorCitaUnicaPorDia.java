@@ -3,10 +3,14 @@ package alvino.dev.apirest_firstapp.domain.consulta.validaciones;
 import alvino.dev.apirest_firstapp.domain.consulta.ConsultaRepository;
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
 import jakarta.validation.ValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 // nombre del curso: ValidacionPacienteSinOtraConsultaEnElMismoDia
-public class ValidacionCitaUnicaPorDia {
+@Component
+public class ValidadorCitaUnicaPorDia implements ValidadorDeConsultas {
 
+    @Autowired
     private ConsultaRepository consultaRepository;
 
     public void validar(DatosReservaConsulta datos) {

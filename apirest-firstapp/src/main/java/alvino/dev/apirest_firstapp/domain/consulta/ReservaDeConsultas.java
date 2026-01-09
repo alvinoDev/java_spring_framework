@@ -1,11 +1,14 @@
 package alvino.dev.apirest_firstapp.domain.consulta;
 
+import alvino.dev.apirest_firstapp.domain.consulta.validaciones.ValidadorDeConsultas;
 import alvino.dev.apirest_firstapp.domain.medico.Medico;
 import alvino.dev.apirest_firstapp.domain.medico.MedicoRepository;
 import alvino.dev.apirest_firstapp.domain.paciente.PacienteRepository;
 import alvino.dev.apirest_firstapp.domain.validacionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReservaDeConsultas {
@@ -17,6 +20,9 @@ public class ReservaDeConsultas {
     @Autowired
     PacienteRepository pacienteRepository;
 
+    @Autowired
+    private List<ValidadorDeConsultas>  validadoresDeConsultas;
+
     public void reservar(DatosReservaConsulta datos) {
         if(!pacienteRepository.existsById(datos.idPaciente())) {
             throw new validacionException("No existe un paciente con el ID seleccionado");
@@ -26,8 +32,8 @@ public class ReservaDeConsultas {
             throw new validacionException("No existe un medico con el ID seleccionado");
         }
 
-        // VALIDACIONES AQUI
-
+        // VALIDACIONES
+        validadoresDeConsultas.forEach(vc -> vc.validar(datos));
 
         var medico = seleccionarMedico(datos);
         var paciente = pacienteRepository.findById(datos.idPaciente()).get();
