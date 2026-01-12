@@ -1,4 +1,4 @@
-package alvino.dev.apirest_firstapp.domain.consulta.validaciones;
+package alvino.dev.apirest_firstapp.domain.consulta.validaciones.reserva;
 
 import alvino.dev.apirest_firstapp.domain.consulta.ConsultaRepository;
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;

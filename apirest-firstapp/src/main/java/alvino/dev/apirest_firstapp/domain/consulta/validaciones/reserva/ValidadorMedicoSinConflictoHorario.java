@@ -1,4 +1,4 @@
-package alvino.dev.apirest_firstapp.domain.consulta.validaciones;
+package alvino.dev.apirest_firstapp.domain.consulta.validaciones.reserva;
 
 import alvino.dev.apirest_firstapp.domain.consulta.ConsultaRepository;
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
@@ -13,7 +13,7 @@ public class ValidadorMedicoSinConflictoHorario implements ValidadorDeConsultas 
     private ConsultaRepository consultaRepository;
 
     public void validar(DatosReservaConsulta datos) {
-        var medicoTieneOtraConsultaEnElMismoHorario = consultaRepository.existsByMedicoIdAndFecha(datos.idMedico(), datos.fecha());
+        var medicoTieneOtraConsultaEnElMismoHorario = consultaRepository.existsByMedicoIdAndFechaAndMotivoCancelamientoIsNull(datos.idMedico(), datos.fecha());
         if(medicoTieneOtraConsultaEnElMismoHorario){
             throw new ValidationException("El medico ya tiene una consulta en la misma fecha y horario");
         }

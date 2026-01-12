@@ -1,6 +1,7 @@
 package alvino.dev.apirest_firstapp.domain.consulta;
 
-import alvino.dev.apirest_firstapp.domain.consulta.validaciones.ValidadorDeConsultas;
+import alvino.dev.apirest_firstapp.domain.consulta.validaciones.cancelamiento.ValidadorCancelamientoDeConsulta;
+import alvino.dev.apirest_firstapp.domain.consulta.validaciones.reserva.ValidadorDeConsultas;
 import alvino.dev.apirest_firstapp.domain.medico.Medico;
 import alvino.dev.apirest_firstapp.domain.medico.MedicoRepository;
 import alvino.dev.apirest_firstapp.domain.paciente.PacienteRepository;
@@ -23,6 +24,9 @@ public class ReservaDeConsultas {
 
     @Autowired
     private List<ValidadorDeConsultas>  validadoresDeConsultas;
+
+    @Autowired
+    private List<ValidadorCancelamientoDeConsulta> validadoresCancelamiento;
 
     public DatosDetalleConsulta reservar(DatosReservaConsulta datos) {
         if(!pacienteRepository.existsById(datos.idPaciente())) {
@@ -63,6 +67,8 @@ public class ReservaDeConsultas {
         if(!consultaRepository.existsById(datos.idConsulta())) {
             throw new ValidationException("El ID seleccionado de la consulta no existe");
         }
+
+        validadoresCancelamiento.forEach(v -> v.validar(datos));
 
         var consulta = consultaRepository.getReferenceById(datos.idConsulta());
         consulta.cancelar(datos.motivo());
