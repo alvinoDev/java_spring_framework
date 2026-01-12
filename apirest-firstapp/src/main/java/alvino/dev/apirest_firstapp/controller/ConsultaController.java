@@ -1,15 +1,13 @@
 package alvino.dev.apirest_firstapp.controller;
 
+import alvino.dev.apirest_firstapp.domain.consulta.DatosCancelarConsulta;
 import alvino.dev.apirest_firstapp.domain.consulta.DatosReservaConsulta;
 import alvino.dev.apirest_firstapp.domain.consulta.ReservaDeConsultas;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("consultas")
@@ -24,5 +22,12 @@ public class ConsultaController {
         var detConsulta = reservaDeConsultas.reservar(datos);
 
         return ResponseEntity.ok(detConsulta);
+    }
+
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity cancelar(@RequestBody @Valid DatosCancelarConsulta datos) {
+        reservaDeConsultas.cancelar(datos);
+        return ResponseEntity.noContent().build();
     }
 }
