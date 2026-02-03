@@ -3,7 +3,6 @@ package com.alvinodev.springai_ecomarket.controller;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.google.genai.GoogleGenAiChatModel;
 import org.springframework.ai.google.genai.GoogleGenAiChatOptions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +16,12 @@ public class CategorizadorDeProductosController {
     private final ChatClient chatClient;
 
     public CategorizadorDeProductosController(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
+        this.chatClient = chatClientBuilder
+                .defaultOptions(
+                        GoogleGenAiChatOptions.builder()
+                        .model(GoogleGenAiChatModel.ChatModel.GEMINI_3_PRO_PREVIEW)
+                        .build())
+                .build();;
     }
 
     @GetMapping
@@ -38,12 +42,13 @@ public class CategorizadorDeProductosController {
                                 
                 Producto: Pelota de fútbol
                 Respuesta: Deportes
-                """;
+        """;
 
         String response = this.chatClient.prompt()
                 .system(systemPrompt) // Configura el rol del sistema
                 .user(producto)       // Envía la entrada del usuario
                 .options(GoogleGenAiChatOptions.builder()
+                        .model("gemini-3-flash-preview")
                         .temperature(0.5)
                         .build())
                 .call()
