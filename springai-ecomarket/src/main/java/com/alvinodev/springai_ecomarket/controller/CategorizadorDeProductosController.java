@@ -1,6 +1,7 @@
 package com.alvinodev.springai_ecomarket.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.google.genai.GoogleGenAiChatModel;
 import org.springframework.ai.google.genai.GoogleGenAiChatOptions;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +52,7 @@ public class CategorizadorDeProductosController {
                         .model("gemini-3-flash-preview")
                         .temperature(0.5)
                         .build())
+                .advisors(new SimpleLoggerAdvisor())
                 .call()
                 .content(); // Obtenemos solo el texto de la respuesta
 
